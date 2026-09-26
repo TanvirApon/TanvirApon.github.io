@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tanvir Hossain Firoz — Backend Engineer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0e16; --bg2:#111a29; --card:#0f1522;
+  --accent:#f2a65c; --accent-dim:#f2a65c33; --moon:#a9c6e8;
+  --text:#e7ecf5; --muted:#8b97ac; --border:rgba(255,255,255,.08);
+  --sans:'Inter',sans-serif; --head:'Space Grotesk',sans-serif; --mono:'JetBrains Mono',monospace;
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*{box-sizing:inherit; margin:0; padding:0;}
+html{scroll-behavior:smooth; scroll-padding-top:70px;}
+body{background:var(--bg); color:var(--text); font-family:var(--sans); line-height:1.6; overflow-x:hidden;}
+img{max-width:100%;}
+a{color:inherit;}
+.wrap{max-width:920px; margin:0 auto; padding:0 24px;}
+::selection{background:var(--accent); color:#0a0e16;}
+
+/* nav */
+nav{position:sticky; top:0; z-index:50; backdrop-filter:blur(10px); background:rgba(10,14,22,.75); border-bottom:1px solid var(--border); padding-top:env(safe-area-inset-top,0px);}
+nav .wrap{display:flex; justify-content:space-between; align-items:center; height:64px;}
+.logo{font-family:var(--mono); font-weight:500; color:var(--accent); font-size:1.05rem;}
+nav ul{list-style:none; display:flex; gap:28px;}
+nav a{text-decoration:none; color:var(--muted); font-size:.92rem; transition:color .2s;}
+nav a:hover{color:var(--text);}
+.navlinks{display:flex;}
+@media(max-width:640px){.navlinks{display:none;}}
+
+/* hero */
+.hero{position:relative; min-height:92vh; display:flex; align-items:center; overflow:hidden;}
+.sky{position:absolute; inset:0; background:radial-gradient(ellipse at 75% 20%, #1a2740 0%, #0a0e16 55%);}
+.star{position:absolute; width:2px; height:2px; background:#fff; border-radius:50%; opacity:.5; animation:twinkle 3.5s infinite ease-in-out;}
+@keyframes twinkle{0%,100%{opacity:.15;} 50%{opacity:.9;}}
+.moon{position:absolute; top:8%; right:10%; width:70px; height:70px; border-radius:50%; background:var(--moon); box-shadow:0 0 60px 12px #a9c6e855; opacity:.9;}
+.skyline{position:absolute; bottom:0; left:0; width:100%; opacity:.55;}
+.hero-inner{position:relative; z-index:2; padding:120px 0 100px;}
+.eyebrow{font-family:var(--mono); font-size:.85rem; color:var(--accent); margin-bottom:14px;}
+.eyebrow .cursor{display:inline-block; width:8px; height:1em; background:var(--accent); margin-left:2px; vertical-align:middle; animation:blink 1s step-end infinite;}
+@keyframes blink{50%{opacity:0;}}
+h1.name{font-family:var(--head); font-weight:700; font-size:clamp(2.4rem,6vw,4.2rem); line-height:1.05; letter-spacing:-.01em;}
+.role{font-family:var(--head); font-size:clamp(1.1rem,2.2vw,1.5rem); color:var(--moon); margin-top:10px; font-weight:500;}
+.tagline{max-width:540px; color:var(--muted); margin-top:20px; font-size:1.02rem;}
+.cta-row{margin-top:34px; display:flex; gap:16px; flex-wrap:wrap;}
+.btn{font-family:var(--mono); font-size:.9rem; padding:12px 22px; border-radius:6px; text-decoration:none; display:inline-block; transition:transform .2s, box-shadow .2s;}
+.btn-primary{background:var(--accent); color:#0a0e16; font-weight:500;}
+.btn-primary:hover{transform:translateY(-2px); box-shadow:0 8px 24px -6px var(--accent-dim);}
+.btn-ghost{border:1px solid var(--border); color:var(--text);}
+.btn-ghost:hover{border-color:var(--accent); color:var(--accent);}
+
+/* sections */
+section{padding:90px 0; border-top:1px solid var(--border);}
+.tag{font-family:var(--mono); color:var(--accent); font-size:.82rem;}
+h2{font-family:var(--head); font-size:clamp(1.6rem,3.4vw,2.2rem); margin:6px 0 36px; font-weight:600;}
+.reveal{opacity:0; transform:translateY(24px); transition:opacity .7s ease, transform .7s ease;}
+.reveal.in{opacity:1; transform:translateY(0);}
+
+/* about */
+.about-grid{display:grid; grid-template-columns:1.3fr 1fr; gap:48px;}
+.about-grid p{color:var(--muted); font-size:1.02rem;}
+.about-grid p+p{margin-top:16px;}
+.facts{display:flex; flex-direction:column; gap:18px; font-family:var(--mono); font-size:.88rem; border-left:2px solid var(--accent); padding-left:18px;}
+.facts b{color:var(--text); display:block; font-family:var(--sans); font-weight:600; font-size:.95rem;}
+.facts span{color:var(--muted);}
+@media(max-width:760px){.about-grid{grid-template-columns:1fr;}}
+
+/* skills */
+.skill-row{display:grid; grid-template-columns:160px 1fr; gap:18px; padding:14px 0; border-bottom:1px solid var(--border); align-items:start;}
+.skill-row:last-child{border-bottom:none;}
+.skill-row .label{font-family:var(--mono); color:var(--moon); font-size:.85rem; padding-top:4px;}
+.chips{display:flex; flex-wrap:wrap; gap:8px;}
+.chip{font-family:var(--mono); font-size:.78rem; padding:5px 11px; border:1px solid var(--border); border-radius:20px; color:var(--muted); transition:.2s;}
+.chip:hover{border-color:var(--accent); color:var(--accent);}
+
+/* experience / timeline */
+.job{position:relative; padding-left:28px; border-left:1px solid var(--border);}
+.job::before{content:''; position:absolute; left:-5px; top:6px; width:9px; height:9px; border-radius:50%; background:var(--accent); box-shadow:0 0 0 4px var(--accent-dim);}
+.job-head{display:flex; justify-content:space-between; flex-wrap:wrap; gap:8px; margin-bottom:6px;}
+.job-title{font-family:var(--head); font-weight:600; font-size:1.15rem;}
+.job-org{color:var(--moon); font-size:.92rem;}
+.job-date{font-family:var(--mono); color:var(--muted); font-size:.82rem;}
+.job ul{margin:14px 0 0 18px; color:var(--muted); font-size:.95rem;}
+.job li{margin-bottom:6px;}
+.job li b{color:var(--text); font-weight:600;}
+.job li a{text-decoration:none;}
+.job li a:hover b{color:var(--accent);}
+
+/* cards */
+.grid2{display:grid; grid-template-columns:1fr 1fr; gap:22px;}
+@media(max-width:760px){.grid2{grid-template-columns:1fr;}}
+.card{background:var(--card); border:1px solid var(--border); border-radius:10px; padding:24px; transition:border-color .25s, transform .25s;}
+.card:hover{border-color:var(--accent); transform:translateY(-3px);}
+.card h3{font-family:var(--head); font-size:1.05rem; margin-bottom:8px;}
+.card h3 a{color:var(--text); text-decoration:none; border-bottom:1px solid transparent;}
+.card h3 a:hover{color:var(--accent); border-bottom-color:var(--accent);}
+.card .stack{font-family:var(--mono); font-size:.76rem; color:var(--accent); margin-top:12px; display:block;}
+.card p{color:var(--muted); font-size:.9rem;}
+.badge{display:inline-block; font-family:var(--mono); font-size:.68rem; color:#0a0e16; background:var(--moon); padding:2px 8px; border-radius:10px; margin-left:8px; vertical-align:middle;}
+
+/* contact */
+.contact{text-align:center;}
+.contact h2{margin-bottom:14px;}
+.contact p{color:var(--muted); max-width:480px; margin:0 auto 30px;}
+.contact-links{display:flex; justify-content:center; gap:16px; flex-wrap:wrap;}
+footer{text-align:center; padding:30px 0 50px; color:var(--muted); font-family:var(--mono); font-size:.78rem;}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="logo">~/tanvir</div>
+    <ul class="navlinks">
+      <li><a href="#about">about</a></li>
+      <li><a href="#skills">skills</a></li>
+      <li><a href="#experience">experience</a></li>
+      <li><a href="#projects">projects</a></li>
+      <li><a href="#contact">contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="sky" id="sky"></div>
+  <div class="moon"></div>
+  <svg class="skyline" viewBox="0 0 1200 220" preserveAspectRatio="none">
+    <g fill="#0d1420">
+      <rect x="0" y="90" width="60" height="130"/><rect x="70" y="60" width="50" height="160"/>
+      <rect x="130" y="110" width="40" height="110"/><rect x="180" y="40" width="65" height="180"/>
+      <rect x="255" y="100" width="45" height="120"/><rect x="310" y="70" width="55" height="150"/>
+      <rect x="375" y="130" width="35" height="90"/><rect x="420" y="20" width="70" height="200"/>
+      <rect x="500" y="95" width="50" height="125"/><rect x="560" y="55" width="60" height="165"/>
+      <rect x="630" y="115" width="40" height="105"/><rect x="680" y="35" width="65" height="185"/>
+      <rect x="755" y="100" width="45" height="120"/><rect x="810" y="70" width="55" height="150"/>
+      <rect x="875" y="120" width="38" height="100"/><rect x="920" y="15" width="70" height="205"/>
+      <rect x="1000" y="90" width="50" height="130"/><rect x="1060" y="60" width="55" height="160"/>
+      <rect x="1125" y="110" width="45" height="110"/>
+    </g>
+    <g fill="#f2a65c" opacity=".55">
+      <rect x="15" y="105" width="6" height="8"/><rect x="35" y="130" width="6" height="8"/>
+      <rect x="85" y="80" width="6" height="8"/><rect x="195" y="65" width="6" height="8"/>
+      <rect x="330" y="95" width="6" height="8"/><rect x="440" y="45" width="6" height="8"/>
+      <rect x="580" y="80" width="6" height="8"/><rect x="700" y="60" width="6" height="8"/>
+      <rect x="825" y="95" width="6" height="8"/><rect x="935" y="40" width="6" height="8"/>
+      <rect x="1015" y="115" width="6" height="8"/><rect x="1080" y="85" width="6" height="8"/>
+    </g>
+  </svg>
+  <div class="wrap hero-inner">
+    <div class="eyebrow">console.log("hello, i'm")<span class="cursor"></span></div>
+    <h1 class="name">Tanvir Hossain Firoz</h1>
+    <div class="role" id="roleType"></div>
+    <p class="tagline">Computer Science graduate who likes taking systems apart to see how they scale — currently deep in Spring Boot, microservices, and the small architectural decisions that keep them from falling over.</p>
+    <div class="cta-row">
+      <a class="btn btn-primary" href="#projects">See my work</a>
+      <a class="btn btn-ghost" href="https://github.com/TanvirApon" target="_blank" rel="noopener">GitHub profile</a>
+      <a class="btn btn-ghost" href="mailto:tanvirhossainfiroz@gmail.com">Say hello</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="wrap">
+    <div class="tag">01 — about</div>
+    <h2 class="reveal">Building things, one merged PR at a time</h2>
+    <div class="about-grid reveal">
+      <p>I'm a Computer Science graduate with a growing focus on backend development — Java, Spring Boot, and microservices architecture in particular. I enjoy building things end to end, and I've had a pull request reviewed, approved, and merged into a live open-source Spring Boot project, which taught me more about real-world code review than any course did.
+      <p>I'm looking for a team and environment that will push my craft further — one where I can absorb as much as possible from experienced engineers, contribute real value along the way, and grow into someone who can solve genuinely complex problems.</p></p>
+      <div class="facts">
+        <div><b>Based in</b><span>Mirpur-2, Dhaka, Bangladesh</span></div>
+        <div><b>Focused on</b><span>Backend & Microservices</span></div>
+        <div><b>Education</b><span>BSc, Computer Science & Engineering — AIUB</span></div>
+        <div><b>Open to</b><span>Backend / Junior Software Engineer roles</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="tag">02 — skills</div>
+    <h2 class="reveal">Toolbox</h2>
+    <div class="reveal">
+      <div class="skill-row"><div class="label">Languages</div><div class="chips">
+        <span class="chip">C++</span><span class="chip">Python</span><span class="chip">Java</span><span class="chip">JavaScript</span><span class="chip">HTML5</span><span class="chip">CSS3</span></div></div>
+      <div class="skill-row"><div class="label">Frameworks</div><div class="chips">
+        <span class="chip">Spring Boot</span><span class="chip">Spring Data JPA</span><span class="chip">Spring Cloud</span><span class="chip">Spring Cloud Eureka</span><span class="chip">Spring Config Server</span><span class="chip">Spring Security</span></div></div>
+      <div class="skill-row"><div class="label">Microservices</div><div class="chips">
+        <span class="chip">Microservices Architecture</span><span class="chip">REST API</span><span class="chip">RabbitMQ</span><span class="chip">Kafka</span><span class="chip">API Gateway</span></div></div>
+      <div class="skill-row"><div class="label">web</div><div class="chips">
+        <span class="chip">DOM Manipulation</span><span class="chip">Responsive Design</span><span class="chip">Bootstrap Grid</span><span class="chip">Media Queries</span><span class="chip">React.js (Basic)</span></div></div>
+      <div class="skill-row"><div class="label">Databases</div><div class="chips">
+        <span class="chip">SQL Server</span><span class="chip">PostgreSQL</span><span class="chip">MongoDB</span><span class="chip">MySQL</span></div></div>
+      <div class="skill-row"><div class="label">Devops</div><div class="chips">
+        <span class="chip">Docker</span><span class="chip">Git</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="wrap">
+    <div class="tag">03 — experience</div>
+    <h2 class="reveal">Where I've worked</h2>
+    <div class="job reveal">
+      <div class="job-head">
+        <div><div class="job-title">Web Developer Intern</div><div class="job-org">FAQ Private Limited</div></div>
+        <div class="job-date">Jun 2024 – Sept 2024</div>
+      </div>
+      <ul>
+        <li>Built responsive, interactive websites with HTML, CSS, JavaScript and Bootstrap, focused on mobile-first, accessible interfaces.</li>
+        <li><a href="https://tanvirapon.github.io/Project-1/" target="_blank" rel="noopener"><b>Dream Developers Website</b></a> — fully responsive, HTML & CSS only, no JavaScript, managing complex layouts.</li>
+        <li><a href="https://tanvirapon.github.io/Project-2/" target="_blank" rel="noopener"><b>The Prospect Shop Website</b></a> — mobile-responsive build using HTML, CSS and media queries.</li>
+        <li><a href="https://tanvirapon.github.io/Project-USU/" target="_blank" rel="noopener"><b>University of Sydney Union Website</b></a> — responsive site with an interactive navbar, Bootstrap 4 and mobile-first design.</li>
+        <li><a href="https://tanvirapon.github.io/VitaC/" target="_blank" rel="noopener"><b>VitC (SPA)</b></a> — single-page application with DOM manipulation for dynamic interactions.</li>
+      </ul>
+    </div>
+
+    <div style="height:44px"></div>
+
+    <div class="tag">open-source contributions</div>
+    <div class="grid2 reveal" style="margin-top:16px">
+      <div class="card">
+        <h3>Bazario <span class="badge">merged</span></h3>
+        <p>anjanx44/Bazario — implemented User and Role entities, DTOs and manual mappers for authentication (PR #14), reviewed and merged by a collaborator.</p>
+        <span class="stack">Spring Boot · Java · Spring Security · REST API</span>
+      </div>
+      <div class="card">
+        <h3>CodeMonk <span class="badge">4 PRs merged</span></h3>
+        <p>YeamimHossainSajid/CodeMonk — built a request logging filter and centralized exception handling in common-core, working across an unfamiliar large codebase.</p>
+        <span class="stack">Spring Boot · Spring AI · RAG · Java</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="wrap">
+    <div class="tag">04 — projects</div>
+    <h2 class="reveal">Personal builds</h2>
+    <div class="grid2 reveal">
+       <div class="card">
+        <h3><a href="https://github.com/TanvirApon/Baking-System" target="_blank" rel="noopener">Digital Banking Microservices</a> <span class="badge">in progress</span></h3>
+        <p>A banking system with secure transfers, OTP-based fraud detection and the SAGA pattern for distributed transactions with automatic rollback on failure.</p>
+        <span class="stack">Spring Boot · Kafka · Redis · MySQL · Docker · API Gateway</span>
+      </div>
+      <div class="card">
+        <h3><a href="https://github.com/TanvirApon/RideShare-Uber-like-Ride-Booking-System-Microservices-Architecture-" target="_blank" rel="noopener">RideShare — Ride Booking System</a></h3>
+        <p>Built a small Uber-like ride booking system, mostly to understand how driver matching actually works. Split into ride, matching and location services talking over Kafka, with driver locations in Redis (GEOADD/GEOSEARCH) so nearby-driver lookups are near-instant, distance computed with the Haversine formula, and drivers ranked by a weighted score rather than just nearest.</p>
+        <span class="stack">Spring Boot · Kafka · Redis Geo · MySQL · Docker</span>
+      </div>
+      <div class="card">
+        <h3><a href="https://github.com/TanvirApon/Smart-Email-Assistant-" target="_blank" rel="noopener">Smart Email Assistant</a></h3>
+        <p>A Chrome extension for real-time email reply suggestions, powered by the Gemini API through a secure Spring Boot backend with REST endpoints handling AI requests.</p>
+        <span class="stack">Spring Boot · Gemini API · Chrome Extension · JS</span>
+      </div>
+       
+      <div class="card">
+        <h3><a href="https://github.com/TanvirApon/AI-Driven-Fitness-Microservices-Platform" target="_blank" rel="noopener">AI-Driven Fitness Platform</a></h3>
+        <p>A microservices fitness app with separate User and Activity services on PostgreSQL and MongoDB, Gemini-powered recommendations, and RabbitMQ for async messaging.</p>
+        <span class="stack">Spring Boot · Spring Cloud · RabbitMQ · PostgreSQL · MongoDB</span>
+      </div>
+     
+      <div class="card">
+        <h3><a href="https://github.com/TanvirApon/spring-boot-websocket-chat-app" target="_blank" rel="noopener">Real-Time Chat App</a></h3>
+        <p>A full-stack chat app with bi-directional messaging over WebSockets, using STOMP for routing and SockJS as a fallback for older browsers.</p>
+        <span class="stack">Spring Boot · WebSocket · STOMP · Thymeleaf · Bootstrap</span>
+      </div>
+      <div class="card">
+        <h3><a href="https://github.com/TanvirApon/Python-Machine-Learning-Project" target="_blank" rel="noopener">ML Classification Models</a></h3>
+        <p>A Data Mining coursework project comparing Naive Bayes, KNN, Decision Tree, Logistic Regression and SVM on a real 2000+ instance dataset, with full preprocessing and EDA.</p>
+        <span class="stack">Python · Pandas · NumPy · scikit-learn</span>
+      </div>
+      <div class="card">
+        <h3><a href="https://github.com/TanvirApon/Library-Management-System" target="_blank" rel="noopener">Lab Management System</a></h3>
+        <p>A console-based Python app for tracking lab PCs — add, update, remove and search records, with duplicate-checking and text-file export.</p>
+        <span class="stack">Python · File I/O · Console App</span>
+      </div>
+      <div class="card">
+        <h3>More on GitHub</h3>
+        <p>Static sites, SPAs and course projects from earlier work — HTML/CSS builds, Bootstrap layouts and JavaScript-driven interfaces.</p>
+        <span class="stack"><a href="https://github.com/TanvirApon?tab=repositories" target="_blank" rel="noopener" style="color:var(--accent)">github.com/TanvirApon →</a></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="tag" style="justify-content:center; display:flex">05 — contact</div>
+    <h2 class="reveal">Let's build something</h2>
+    <p class="reveal">Open to backend and junior software engineer roles — happiest working close to Spring Boot, microservices and the systems underneath a product.</p>
+    <div class="contact-links reveal">
+      <a class="btn btn-primary" href="mailto:tanvirhossainfiroz@gmail.com">tanvirhossainfiroz@gmail.com</a>
+      <a class="btn btn-ghost" href="tel:+8801788514302">+880 1788-514302</a>
+      <a class="btn btn-ghost" href="https://github.com/TanvirApon" target="_blank" rel="noopener">GitHub</a>
+    </div>
+  </div>
+</section>
+
+<footer>built by tanvir · Dhaka, Bangladesh</footer>
+
+<script>
+// role typing effect
+const roles=["Aspiring Software Engineer","Backend & Microservices Developer","Spring Boot Enthusiast"];
+const el=document.getElementById('roleType');
+let ri=0,ci=0,deleting=false;
+function tick(){
+  const full=roles[ri];
+  el.textContent = deleting ? full.slice(0,ci--) : full.slice(0,ci++);
+  if(!deleting && ci===full.length+1){deleting=true; setTimeout(tick,1400); return;}
+  if(deleting && ci===0){deleting=false; ri=(ri+1)%roles.length;}
+  setTimeout(tick, deleting?35:60);
+}
+tick();
+
+// stars
+const sky=document.getElementById('sky');
+for(let i=0;i<50;i++){
+  const s=document.createElement('div');
+  s.className='star';
+  s.style.left=Math.random()*100+'%';
+  s.style.top=Math.random()*70+'%';
+  s.style.animationDelay=(Math.random()*3.5)+'s';
+  sky.appendChild(s);
+}
+
+// scroll reveal
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target);} });
+},{threshold:.15});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
